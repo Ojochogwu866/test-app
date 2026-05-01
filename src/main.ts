@@ -1,6 +1,6 @@
 // ── Config ────────────────────────────────────────────────────────────────────
 const API_URL = 'https://super-fortnight-be.onrender.com/api';
-const WORKSPACE = 'zendora';
+const WORKSPACE = 'johnenterprise';
 const COVER_BASE = 'https://covers.openlibrary.org/b/id/';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
