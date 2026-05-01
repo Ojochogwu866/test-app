@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Folio — Find Your Next Read</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="src/style.css" />
+	</head>
+	<body>
+		<nav>
+			<div class="logo">Folio</div>
+			<div class="nav-right">
+				<div id="userInfo" class="user-info" style="display: none"></div>
+				<button id="loginBtn" class="nav-btn nav-btn--ghost">Log in</button>
+				<button id="registerBtn" class="nav-btn nav-btn--solid">
+					Register
+				</button>
+			</div>
+		</nav>
+
+		<section class="hero">
+			<p class="hero-label">Thousands of titles. One destination.</p>
+			<h1>
+				Find Your
+				<br />
+				Next Read.
+			</h1>
+			<p class="hero-desc">
+				Fiction, science, history, philosophy — hand-picked titles from the
+				world's best authors, available now.
+			</p>
+			<div class="search-bar">
+				<input
+					id="searchInput"
+					type="text"
+					placeholder="Search by title, author, or topic…"
+				/>
+				<button id="searchBtn">Search</button>
+			</div>
+		</section>
+
+		<section class="books">
+			<div class="books-header">
+				<h2 id="sectionTitle">Popular Fiction</h2>
+				<span id="sectionCount"></span>
+			</div>
+			<div class="books-grid" id="booksGrid">
+				<div class="grid-msg">Loading books…</div>
+			</div>
+		</section>
+
+		<footer>
+			<p>© 2025 Folio · Read More. Think More.</p>
+		</footer>
+
+		<!-- Auth Modal -->
+		<div id="authModal" class="modal">
+			<div class="modal-overlay" id="modalOverlay"></div>
+			<div class="modal-content">
+				<button class="modal-close" id="modalClose">×</button>
+				<h2 id="modalTitle">Log in</h2>
+				<form id="authForm">
+					<div class="form-group" id="nameGroup" style="display: none">
+						<label>Name</label>
+						<input type="text" id="nameInput" placeholder="Your name" />
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input
+							type="email"
+							id="emailInput"
+							placeholder="you@example.com"
+							required
+						/>
+					</div>
+					<div class="form-group">
+						<label>Password</label>
+						<input
+							type="password"
+							id="passwordInput"
+							placeholder="••••••••"
+							required
+						/>
+					</div>
+					<div id="errorMsg" class="error-msg"></div>
+					<button type="submit" class="form-btn" id="submitBtn">Log in</button>
+					<div class="form-switch">
+						<span id="switchText">Don't have an account?</span>
+						<a id="switchLink">Register</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script type="module" src="src/main.ts"></script>
+	</body>
+</html>
