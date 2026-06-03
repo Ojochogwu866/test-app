@@ -378,11 +378,6 @@ async function mountWidgets(): Promise<void> {
 	const urls = getProduct7BaseUrls();
 	try {
 		liveChatWidget = product7SDK.createLiveChatWidget({
-			position: 'right',
-			theme: 'light',
-			welcomeMessage: 'How can we help you today?',
-			enableHelp: true,
-			enableChangelog: true,
 			feedbackBoardName: 'feature-requests',
 			feedbackUrl: urls.feedbackUrl,
 			changelogUrl: urls.changelogUrl,
