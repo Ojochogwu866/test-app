@@ -53,16 +53,16 @@ interface SurveyWidget {
 }
 
 interface LiveChatWidgetOptions {
-	position: string;
-	theme: string;
-	welcomeMessage: string;
-	enableHelp: boolean;
-	enableChangelog: boolean;
-	feedbackBoardName: string;
-	feedbackUrl: string;
-	changelogUrl: string;
-	helpUrl: string;
-	roadmapUrl: string;
+	position?: string;
+	theme?: string;
+	welcomeMessage?: string;
+	enableHelp?: boolean;
+	enableChangelog?: boolean;
+	feedbackBoardName?: string;
+	feedbackUrl?: string;
+	changelogUrl?: string;
+	helpUrl?: string;
+	roadmapUrl?: string;
 }
 
 interface Product7SDK {
