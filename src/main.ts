@@ -331,6 +331,7 @@ function normalizeUserContext(user: RawUser): UserContext {
 		name: user?.name ?? 'Guest',
 		attributes: {
 			plan: 'free',
+			customer: true,
 			role: 'customer',
 			signup_source: 'web',
 			app_version: '1.0.0',
