@@ -10,6 +10,7 @@ interface RawUser {
 	email?: string;
 	name?: string;
 	avatar?: string;
+	phone?: string;
 	attributes?: Record<string, unknown>;
 	company?: Record<string, unknown>;
 }
@@ -19,6 +20,7 @@ interface UserContext {
 	email: string;
 	name: string;
 	avatar?: string;
+	phone?: string;
 	attributes: Record<string, unknown>;
 	company: Record<string, unknown>;
 }
@@ -335,6 +337,7 @@ function normalizeUserContext(user: RawUser): UserContext {
 			role: 'customer',
 			signup_source: 'web',
 			app_version: '1.0.0',
+			job_title: 'Product Manager',
 			...(user?.attributes ?? {}),
 		},
 		company: {
@@ -344,6 +347,7 @@ function normalizeUserContext(user: RawUser): UserContext {
 		},
 	};
 	if (user?.avatar) ctx.avatar = user.avatar;
+	ctx.phone = user?.phone ?? '+1 555 0100';
 	return ctx;
 }
 
