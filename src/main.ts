@@ -11,6 +11,7 @@ interface RawUser {
 	name?: string;
 	avatar?: string;
 	phone?: string;
+	job_title?: string;
 	attributes?: Record<string, unknown>;
 	company?: Record<string, unknown>;
 }
@@ -21,6 +22,7 @@ interface UserContext {
 	name: string;
 	avatar?: string;
 	phone?: string;
+	job_title?: string;
 	attributes: Record<string, unknown>;
 	company: Record<string, unknown>;
 }
@@ -337,19 +339,21 @@ function normalizeUserContext(user: RawUser): UserContext {
 			role: 'customer',
 			signup_source: 'web',
 			app_version: '1.0.0',
-			phone: user?.phone ?? '+1 555 0100',
 			...(user?.attributes ?? {}),
 		},
 		company: {
 			name: 'Folio Books',
 			monthly_spend: 0,
-			job_title: 'Product Manager',
-			owner: user?.name ?? 'Guest',
 			...(user?.company ?? {}),
 		},
 	};
 	if (user?.avatar) ctx.avatar = user.avatar;
+	// Top-level, standard CRM contact properties — not folded into
+	// attributes/company. `owner` is deliberately NOT sent here: it's
+	// an internal-admin-only concept (which teammate is assigned to
+	// this contact), never something an integrator/identify() call sets.
 	ctx.phone = user?.phone ?? '+1 555 0100';
+	ctx.job_title = user?.job_title ?? 'Product Manager';
 	return ctx;
 }
 
