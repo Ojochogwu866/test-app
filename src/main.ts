@@ -348,10 +348,7 @@ function normalizeUserContext(user: RawUser): UserContext {
 		},
 	};
 	if (user?.avatar) ctx.avatar = user.avatar;
-	// Top-level, standard CRM contact properties — not folded into
-	// attributes/company. `owner` is deliberately NOT sent here: it's
-	// an internal-admin-only concept (which teammate is assigned to
-	// this contact), never something an integrator/identify() call sets.
+	// owner is deliberately not sent — it's an internal-admin-only concept.
 	ctx.phone = user?.phone ?? '+1 555 0100';
 	ctx.job_title = user?.job_title ?? 'Product Manager';
 	return ctx;
