@@ -337,12 +337,14 @@ function normalizeUserContext(user: RawUser): UserContext {
 			role: 'customer',
 			signup_source: 'web',
 			app_version: '1.0.0',
-			job_title: 'Product Manager',
+			phone: user?.phone ?? '+1 555 0100',
 			...(user?.attributes ?? {}),
 		},
 		company: {
 			name: 'Folio Books',
 			monthly_spend: 0,
+			job_title: 'Product Manager',
+			owner: user?.name ?? 'Guest',
 			...(user?.company ?? {}),
 		},
 	};
