@@ -12,6 +12,7 @@ interface RawUser {
 	avatar?: string;
 	phone?: string;
 	job_title?: string;
+	gender?: string;
 	attributes?: Record<string, unknown>;
 	company?: Record<string, unknown>;
 }
@@ -23,6 +24,7 @@ interface UserContext {
 	avatar?: string;
 	phone?: string;
 	job_title?: string;
+	gender?: string;
 	attributes: Record<string, unknown>;
 	company: Record<string, unknown>;
 }
@@ -351,6 +353,7 @@ function normalizeUserContext(user: RawUser): UserContext {
 	// owner is deliberately not sent — it's an internal-admin-only concept.
 	ctx.phone = user?.phone ?? '+1 555 0100';
 	ctx.job_title = user?.job_title ?? 'Product Manager';
+	ctx.gender = user?.gender ?? 'female';
 	return ctx;
 }
 
