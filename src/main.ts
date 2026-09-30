@@ -1,9 +1,7 @@
-// ── Config ────────────────────────────────────────────────────────────────────
 const API_URL = 'https://super-fortnight-be.onrender.com/api';
 const WORKSPACE = 'johnenterprise';
 const COVER_BASE = 'https://covers.openlibrary.org/b/id/';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
 interface RawUser {
 	user_id?: string;
 	id?: string;
@@ -90,7 +88,6 @@ interface Product7SDK {
 	): Promise<SurveyWidget>;
 }
 
-// ── State ─────────────────────────────────────────────────────────────────────
 let currentUser: UserContext | null = null;
 let product7SDK: Product7SDK | null = null;
 let liveChatWidget: { mount(): void } | null = null;
@@ -98,7 +95,6 @@ let surveyWidget: SurveyWidget | null = null;
 let isRegister = false;
 let product7Initialized = false;
 
-// ── DOM refs ──────────────────────────────────────────────────────────────────
 const booksGrid = document.getElementById('booksGrid') as HTMLDivElement;
 const sectionTitle = document.getElementById(
 	'sectionTitle'
@@ -122,7 +118,6 @@ const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
 const switchText = document.getElementById('switchText') as HTMLSpanElement;
 const switchLink = document.getElementById('switchLink') as HTMLAnchorElement;
 
-// ── Button loading helper ─────────────────────────────────────────────────────
 function setButtonLoading(
 	btn: HTMLButtonElement,
 	loading: boolean,
@@ -138,7 +133,6 @@ function setButtonLoading(
 	}
 }
 
-// ── Books ─────────────────────────────────────────────────────────────────────
 function genPrice(key: string): string {
 	let h = 0;
 	for (let i = 0; i < key.length; i++)
@@ -221,7 +215,6 @@ searchInput.addEventListener('keydown', (e: KeyboardEvent) => {
 	if (e.key === 'Enter') searchBtn.click();
 });
 
-// ── Auth modal ────────────────────────────────────────────────────────────────
 function syncModal(): void {
 	if (isRegister) {
 		modalTitle.textContent = 'Create account';
@@ -275,7 +268,6 @@ switchLink.addEventListener('click', () => {
 	errorMsg.textContent = '';
 });
 
-// ── Auth form submit ──────────────────────────────────────────────────────────
 (document.getElementById('authForm') as HTMLFormElement).addEventListener(
 	'submit',
 	async (e: Event) => {
@@ -329,7 +321,6 @@ switchLink.addEventListener('click', () => {
 	}
 );
 
-// ── Product7 helpers ──────────────────────────────────────────────────────────
 function normalizeUserContext(user: RawUser): UserContext {
 	const ctx: UserContext = {
 		user_id: user?.user_id ?? user?.id ?? 'guest',
@@ -367,7 +358,6 @@ function getProduct7BaseUrls(): Record<string, string> {
 	};
 }
 
-// ── SDK init ──────────────────────────────────────────────────────────────────
 async function initSDK(): Promise<void> {
 	if (product7SDK && product7Initialized) return;
 	try {
@@ -383,7 +373,6 @@ async function initSDK(): Promise<void> {
 	}
 }
 
-// ── Mount widgets ─────────────────────────────────────────────────────────────
 async function mountWidgets(): Promise<void> {
 	if (!product7SDK || !product7Initialized || liveChatWidget) return;
 	const urls = getProduct7BaseUrls();
@@ -401,7 +390,6 @@ async function mountWidgets(): Promise<void> {
 	}
 }
 
-// ── Identify ──────────────────────────────────────────────────────────────────
 async function identifyUser(user: UserContext): Promise<void> {
 	if (!product7SDK || !product7Initialized) return;
 	try {
@@ -411,7 +399,6 @@ async function identifyUser(user: UserContext): Promise<void> {
 	}
 }
 
-// ── Survey ────────────────────────────────────────────────────────────────────
 function destroySurveyWidget(): void {
 	if (surveyWidget) {
 		surveyWidget.destroy();
@@ -438,7 +425,6 @@ async function checkAndShowActiveSurvey(): Promise<void> {
 	});
 }
 
-// ── Logout ────────────────────────────────────────────────────────────────────
 async function logout(): Promise<void> {
 	localStorage.removeItem('authToken');
 	destroySurveyWidget();
@@ -457,7 +443,6 @@ async function logout(): Promise<void> {
 	await checkAndShowActiveSurvey();
 }
 
-// ── Auth check on load ────────────────────────────────────────────────────────
 async function checkAuth(): Promise<void> {
 	await initSDK();
 
@@ -487,7 +472,6 @@ async function checkAuth(): Promise<void> {
 	await checkAndShowActiveSurvey();
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
 syncNav();
 fetchBooks('subject:fiction', 'Popular Fiction');
 checkAuth();
